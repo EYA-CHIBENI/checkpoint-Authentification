@@ -1,6 +1,7 @@
 import React from 'react'
 import { CURRENTUSER, REGISTER, FAIL, LOGIN, LOGOUT } from '../ActionsTypes/UsersActionsTypes'
 import axios from 'axios';
+import { handleerror } from './ErrorsActions';
 export const register = (cordUser, navigate) => async (dispatch) => {
     try {
         console.log(cordUser)
@@ -11,10 +12,9 @@ export const register = (cordUser, navigate) => async (dispatch) => {
         })
         navigate('/Profile')
     } catch (error) {
-        dispatch({
-            type: FAIL,
-            payload: error.response.data.errors
-        })
+          error.response.data.errors.forEach(element => {
+        dispatch(handleerror(element.msg))
+       });
     }
 }
 export const login = (cordUser, navigate) => async (dispatch) => {
@@ -26,10 +26,9 @@ export const login = (cordUser, navigate) => async (dispatch) => {
         })
         navigate('/Profile')
     } catch (error) {
-        dispatch({
-            type: FAIL,
-            payload: error.response.data.errors
-        })
+       error.response.data.errors.forEach(element => {
+        dispatch(handleerror(element.msg))
+       });
     }
 }
 

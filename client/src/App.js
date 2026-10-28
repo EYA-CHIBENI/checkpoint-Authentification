@@ -6,10 +6,12 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import PrivateRoute from './PrivateRoute';
+import DisplayErrors from './DisplayErrors';
 function App() {
   return (
     <div className="App">
 <NavAuth/>
+<DisplayErrors></DisplayErrors>
 <Routes>
 <Route path='/' element={<Home/>} />
 <Route path='/Register' element={<Register/>} />
