@@ -1,5 +1,5 @@
 import React from 'react'
-import { CURRENTUSER,REGISTER, FAIL, LOGIN, LOGOUT} from '../ActionsTypes/UsersActionsTypes'
+import { CURRENTUSER, REGISTER, FAIL, LOGIN, LOGOUT } from '../ActionsTypes/UsersActionsTypes'
 import axios from 'axios';
 export const register = (cordUser, navigate) => async (dispatch) => {
     try {
@@ -19,7 +19,7 @@ export const register = (cordUser, navigate) => async (dispatch) => {
 }
 export const login = (cordUser, navigate) => async (dispatch) => {
     try {
-        const res = await axios.post('/api/userAuth/SignIn')
+        const res = await axios.post('/api/userAuth/SignIn', cordUser)
         dispatch({
             type: LOGIN,
             payload: res.data
@@ -33,27 +33,27 @@ export const login = (cordUser, navigate) => async (dispatch) => {
     }
 }
 
-export const currentuser =()=>async(dispatch)=>{
+export const currentuser = () => async (dispatch) => {
     try {
         const config = {
-            headers : {
-               Authorization : localStorage.getItem('token') 
+            headers: {
+                Authorization: localStorage.getItem('token')
             }
         }
-    const res = await axios.get('/api/userAuth/CurrentUser', config)
-   dispatch({
-    type: CURRENTUSER,
-    payload: res.data
-   })
-} catch (error) {
-          dispatch({
+        const res = await axios.get('/api/userAuth/CurrentUser', config)
+        dispatch({
+            type: CURRENTUSER,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
             type: FAIL,
             payload: error.response.data.errors
         })
     }
 }
-export const logout =()=>{
-    return(
+export const logout = () => {
+    return (
         {
             type: LOGOUT,
         }

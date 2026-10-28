@@ -14,12 +14,12 @@ const Login = () => {
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control onChange={(e)=> setEmail(e.target.value)} type="email" placeholder="Enter email" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control onChange={(e)=> setPassword(e.target.value)} type="password" placeholder="Password" />
             </Form.Group>
 
             <Button onClick={(e)=>{e.preventDefault(); dispatch(login({email,password}, navigate))}} variant="primary" type="submit">

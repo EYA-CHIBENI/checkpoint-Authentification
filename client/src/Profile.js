@@ -1,8 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { currentuser } from './Redux/Actions/UsersActions'
 
 const Profile = () => {
-  const user = useSelector(state => state.UsersReducer.UsersReduceruser)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(currentuser())
+  }, [])
+  const user = useSelector(state => state.UsersReducer.user)
   return (
     <div>
       <h1>{user.name}</h1>

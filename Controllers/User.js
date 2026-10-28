@@ -31,7 +31,7 @@ exports.SignIn=async(req, res) => {
         } else {
             const matched = await bcrypt.compareSync(password, found.password)
             if (!matched) {
-                return
+                return 
                 res.status(400).send({ errors: [{ msg: "wrong password" }] })
             }
             const payload = { id: found._id }
